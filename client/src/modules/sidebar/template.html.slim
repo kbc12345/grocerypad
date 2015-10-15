@@ -1,0 +1,77 @@
+.sidebar
+  ul
+    li.sidebar-logo
+      =image_tag "logo.png"
+    li
+      a href="#" ui-sref="admin.dashboard"
+        i.icon-home
+        span Dashboard
+    li
+      a href="#" ui-sref="admin.regulatory_exams.index"
+        i.icon-files
+        span Regulatory Examinations
+    li
+      a href="#" ui-sref="admin.periodic_regulatory_queries.index"
+        i.icon-page-search
+        span Periodic Regulatory Queries
+    li
+      a href="#" ui-sref="admin.regulatory_relationship_management.index"
+        i.icon-management
+        span Regulatory Relationship Management
+    li
+      a href="#" ui-sref="admin.issue_management.index"
+        i
+        span Issue Management
+    li
+      a href="#"
+        i.icon-issue-opened
+        span Remediation Quality Assurance
+    li
+      a href="#"
+        i.icon-issue-opened
+        span Correlation & Prediction Engine
+    li
+      a href="#"
+        i.icon-checklist
+        span Engagement Preparation
+    li
+      a href="#"
+        i.icon-chart
+        span Reporting
+    li
+      a href="#" ui-sref='admin.user_management.index'
+        i.icon-group
+        span User Management
+
+    li
+      a href="#" ng-click="toggleMenu('settings') "
+        i.icon-settings
+        span Settings
+        i.icon-sub.pull-right ng-class="activeRootUrl=='settings' ? 'icon-down' : 'icon-right'"
+      ul.sub-nav ng-show="activeRootUrl=='settings'"
+        li
+          a.ng-active href="#" ui-sref="admin.settings.bank" {{::settingsProperties.bank}}
+        li
+          a.ng-active href="#" ui-sref="admin.settings.regulations" {{::settingsProperties.regulations}}
+        li.submodule
+          a.ng-active href="#" ui-sref="admin.settings.exam_regions" {{::settingsProperties.exam_regions}}
+        li.submodule
+          a.ng-active href="#" ui-sref="admin.settings.exam_controls" {{::settingsProperties.exam_controls}}
+        li.submodule
+          a.ng-active href="#" ui-sref="admin.settings.exam_status" {{::settingsProperties.exam_status}}
+        li.submodule
+          a.ng-active href="#" ui-sref="admin.settings.reg_exam_status" {{::settingsProperties.reg_exam_status}}
+        li.submodule
+          a.ng-active href="#" ui-sref="admin.settings.activity_status" Activity Status
+        li.submodule
+          a.ng-active href="#" ui-sref="admin.settings.exam_types" {{::settingsProperties.exam_types}}
+        li.submodule
+          a.ng-active href="#" ui-sref="admin.settings.legal_entities" {{::settingsProperties.legal_entities}}
+        li.submodule
+          a.ng-active href="#" ui-sref="admin.settings.exam_notifications" {{::settingsProperties.exam_notifications}}
+        li.submodule
+          a.ng-active href="#" ui-sref="admin.settings.roles" Roles
+        li.submodule
+          a.ng-active href="#" ui-sref="admin.settings.regulators" Regulators
+        li.submodule
+          a.ng-active href="#" ui-sref="admin.settings.departments" {{::settingsProperties.departments}}
