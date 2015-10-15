@@ -47,29 +47,13 @@ angular.module('client').run [
     # this works perfectly though
     evalState =(toState,toParams)->
       if !!toState.data.authenticated && !!$rootScope.currentUser
-        cache = getCachedUrl()
-        if cache.name
-          $state.go(cache.name, cache.params)
-        else
-          $state.go(toState.name, toParams)
+        $state.go(toState.name, toParams)
       else if !!toState.data.unauthenticated && !!$rootScope.currentUser
         $state.go(ROOT_PATH)
       else if !!toState.data.unauthenticated && !$rootScope.currentUser
         $state.go(toState.name, toParams)
       else
-        setUrlToCache(toState, toParams)
         $state.go("login")
 
-    setUrlToCache = (toState, toParams='{}') ->
-      localStorage.setItem('originalUrlName', toState.name)
-      localStorage.setItem('originalUrlParams', JSON.stringify(toParams))
-
-    getCachedUrl = () ->
-      cache =
-        name: localStorage.getItem('originalUrlName')
-        params: JSON.parse(localStorage.getItem('originalUrlParams')||'{}')
-      localStorage.removeItem('originalUrlName')
-      localStorage.removeItem('originalUrlParams')
-      cache
 
 ]

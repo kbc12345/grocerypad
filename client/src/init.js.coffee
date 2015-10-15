@@ -13,6 +13,7 @@ angular.module(
     'NgActive',
     'Sidebar',
     'Logs',
-    'ToggableField'
+    'ToggableField',
+    'Header'
   ]
 )
