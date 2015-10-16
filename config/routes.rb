@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :product_categories
     resources :grocery_items
     resources :groceries
+    resources :logs
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

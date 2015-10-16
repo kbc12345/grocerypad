@@ -4,6 +4,7 @@ class Product < ActiveRecord::Base
     validates :price, presence: true
 
     belongs_to :product_category
+    has_many :logs, class_name: "Log", foreign_key: "parent_id"
 
 
 
