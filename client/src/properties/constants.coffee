@@ -2,90 +2,25 @@
 @TIMESTAMP_FORMAT = "MMM DD, YYYY hh:mm:ss"
 @DEFAULT_PER_PAGE = 10
 
-#note: this is 10mb in bytes
-@MAX_FILE_SIZE = 10485760
-
-@STATUS_COLLECTION_ALL= [
-  {
-    label: 'All'
-    value: ''
-  }
-  {
-    label: 'Active'
-    value: 'true'
-  }
-  {
-    label: 'Inactive'
-    value: 'false'
-  }
-
+@MONTHS = [
+  {key: "1", value: "January"},
+  {key: "2", value: "Feburary"},
+  {key: "3", value: "March"},
+  {key: "4", value: "April"},
+  {key: "5", value: "May"},
+  {key: "6", value: "June"},
+  {key: "7", value: "July"},
+  {key: "8", value: "Augugust"},
+  {key: "9", value: "September"},
+  {key: "10", value: "October"},
+  {key: "11", value: "November"},
+  {key: "12", value: "December"}
 ]
 
-
-@STATUS_COLLECTION= [
-  {
-    label: 'Active'
-    value: 'true'
-  }
-  {
-    label: 'Inactive'
-    value: 'false'
-  }
-
+@DIVISIONS = [
+  {key: "1", value: "1st Half"},
+  {key: "2", value: "2nd Half"}
 ]
-
-@REQUEST_STATUSES= [
-  {
-    label: 'All'
-    value: ''
-  }
-  {
-    label: 'Draft'
-    value: 'Draft'
-  }
-  {
-    label: 'Pending Approval'
-    value: 'Final'
-  }
-  {
-    label: 'Approved'
-    value: 'Approved'
-  }
-]
-
-
-@REQUEST_META= [
-  {
-    label: 'All'
-    value: ''
-  }
-  {
-    label: 'Outstanding'
-    value: 'Outstanding'
-  }
-  {
-    label: 'Overdue'
-    value: 'Overdue'
-  }
-]
-
-
-@ISSUE_STATUSES= [
-  {
-    label: 'All'
-    value: ''
-  }
-  {
-    label: 'Acknowledged'
-    value: '1'
-  }
-  {
-    label: 'Unacknowledged'
-    value: '0'
-  }
-
-]
-
 
 @MESSAGES =
   UPDATE_SUCCESS: "Updated successfully"
