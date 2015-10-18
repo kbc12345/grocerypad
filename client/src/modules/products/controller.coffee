@@ -8,8 +8,7 @@ Ctrl = ($scope,$rootScope,Product,ProductCategory)->
     productModal: false
     categoryModal: false
     pagination: false
-    productLoad: false
-    categoryLoad: false
+
 
   $scope.temp =
     product: id: null
@@ -20,8 +19,10 @@ Ctrl = ($scope,$rootScope,Product,ProductCategory)->
   ProductCategory.getList().$promise
     .then (data) ->
       $scope.temp.categories = data.collection
-    .finally ->
-      $scope.uiState.categoryLoad = true
+
+  Product.query().$promise
+    .then (data) ->
+      $scope.temp.products = data
 
   $scope.products = [
     {

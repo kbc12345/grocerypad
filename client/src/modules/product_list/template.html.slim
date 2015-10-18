@@ -40,7 +40,7 @@
         tbody
           tr ng-repeat="obj in products"
             td.xl ng-bind="obj.name"
-            td ng-bind="obj.product_category"
+            td ng-bind="obj.product_category_name"
             td ng-bind="obj.price.formatMoney()"
             td
               span ng-bind="obj.status"
