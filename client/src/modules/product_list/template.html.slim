@@ -11,10 +11,10 @@
             th Product
             th Category
             th Price
-            th Current Stock level
+            th Stock level
         tbody
           tr ng-repeat="obj in products"
-            td ng-bind="obj.name"
+            td.xl ng-bind="obj.name"
             td ng-bind="obj.product_category"
             td ng-bind="obj.price.formatMoney()"
             td

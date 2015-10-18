@@ -1,8 +1,15 @@
 angular.module('CategoryList').controller 'CategoryListCtrl',
-['$scope','$rootScope'
+['$scope','$rootScope','ProductCategory'
 ($scope,$rootScope) ->
 
   $scope.toggleModal =(category) ->
     $scope.category = category
     $scope.uiState.categoryModal = !$scope.uiState.categoryModal
+
+  $scope.delete =(obj) ->
+    swal DELETE_WARNING, ->
+      ProductCategory.remove(id: obj.id).$promise
+        .then (data) ->
+          $.growl.notice {message: MESSAGES.DELETE_SUCCESS}
+          $scope.categories.splice($scope.categories.indexOf(obj),1)
 ]
