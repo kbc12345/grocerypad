@@ -4,5 +4,5 @@ angular.module('ProductList').controller 'ProductListCtrl',
 
   $scope.toggleModal =(product) ->
     $scope.product = product
-    $scope.uiState.modal = !$scope.uiState.modal
+    $scope.uiState.productModal = !$scope.uiState.productModal
 ]

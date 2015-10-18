@@ -1,0 +1,24 @@
+.modal.open ng-show="toggle"
+  form name="form"
+    .modal-dialog
+      .modal-header
+        a.btn-close ng-click="toggle=!toggle" ×
+        h4 Product Category
+
+      .modal-body
+
+        form name="form"
+          .form-group
+            label Name
+            input.form-control(
+              type="text"
+              name="name"
+              ng-model="product.name"
+              required=""
+              ng-enter="submit(form)"
+              ng-class="{error: form.name.$error.required && form.$submitted}")
+
+      .modal-footer
+        .row
+          .col-md-12
+            a.btn.btn-success ng-click="submit(form)" ng-class="{disabled: disableAction}" Save

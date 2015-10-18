@@ -6,7 +6,9 @@ page-header title="Products"
       product-list products="products" ui-state="uiState"
 
     .col-md-5
-      product-categories categories="categories"
+      category-list categories="categories" ui-state="uiState"
 
 
-product-modal products="products" product="product" toggle="uiState.modal"
+product-modal products="products" product="product" toggle="uiState.productModal"
+
+category-modal products="categories" product="category" toggle="uiState.categoryModal"

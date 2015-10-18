@@ -18,8 +18,9 @@ angular.module(
     'Header',
     'PageHeader',
     'ProductList',
-    'ProductCategories',
     'ProductModal',
-    'ProductStatus'
+    'ProductStatus',
+    'CategoryList',
+    'CategoryModal'
   ]
 )

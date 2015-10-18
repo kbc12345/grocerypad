@@ -1,4 +1,4 @@
-angular.module('client').factory 'ProductCategories',
+angular.module('client').factory 'ProductCategory',
   ['$resource',
   ($resource) ->
 

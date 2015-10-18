@@ -4,9 +4,10 @@ Ctrl = ($scope,$rootScope)->
   NProgress.done()
 
   $scope.uiState =
-    modal: false
+    productModal: false
+    categoryModal: false
     pagination: false
-    
+
   $scope.products = [
     {
       name: "Prodyct X"

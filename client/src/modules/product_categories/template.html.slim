@@ -2,7 +2,7 @@
   .panel-heading
     span Categories
     .action-group
-      a.icon-plus href="#"
+      a.icon-plus ng-click="toggleModal(null)"
   .panel-body.condensed
     table.table.table-hover
       thead
@@ -13,6 +13,6 @@
           td
             span ng-bind="obj.name"
             .action-group
-              a.icon-logs href="#"
-              a.icon-edit href="#"
-              a.icon-delete href="#"
+              a.icon-logs ng-click=""
+              a.icon-edit ng-click="toggleModal(obj)"
+              a.icon-delete ng-click="delete()"
