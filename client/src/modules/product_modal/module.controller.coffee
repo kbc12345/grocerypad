@@ -1,6 +1,6 @@
 angular.module('ProductModal').controller 'ProductModalCtrl',
-['$scope','$rootScope'
-($scope,$rootScope) ->
+['$scope','$rootScope','Product'
+($scope,$rootScope,Product) ->
 
   $scope.disableAction = false
 
@@ -13,17 +13,19 @@ angular.module('ProductModal').controller 'ProductModalCtrl',
       $rootScope.growl.error(MESSAGES.FORM_ERROR)
 
   evalAction = ->
-    if $scope.product.id
+    if !!$scope.product.id
       update()
     else
       create()
 
   create =(obj)->
-    Product.save(product: $scope.product).$promise
+    Product.save(product_category_id: $scope.product.product_category_id, product: $scope.product).$promise
       .then (data) ->
-        obj = data
-        $scope.products.unshift data
+        obj = data.product
+        obj.product_category = data.product_category
+        $scope.products.unshift obj
         $rootScope.growl.success(MESSAGES.CREATE_SUCCESS)
+        $scope.toggle = false
       .finally ->
         $scope.disableAction = false
 

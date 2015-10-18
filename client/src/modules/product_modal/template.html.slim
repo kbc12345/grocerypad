@@ -32,6 +32,18 @@
               ng-class="{error: form.price.$error.required && form.$submitted}")
 
           .form-group
+            label Category
+            select.form-control(
+              ng-model="product.product_category_id"
+              required=""
+              name="product_category_id"
+              ng-options="obj.id as obj.name for obj in categories"
+              ng-class="{error: form.product_category_id.$error.required && form.$submitted}"
+            )
+
+
+
+          .form-group
             label Current Stock level
             input status="product.status" product-status="" complete="false"
 
