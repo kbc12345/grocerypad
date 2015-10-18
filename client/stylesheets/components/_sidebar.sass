@@ -1,0 +1,38 @@
+.sidebar
+  position: fixed
+  z-index: 10
+  left: 0
+  top: 0
+  height: 100%
+  width: 60px
+  background: $dark
+  text-align: center
+  overflow: auto
+  overflow-x: hidden
+  ul
+    margin: 0px 0 20px 0
+    padding-left: 0
+    list-style: none
+    li
+      position: relative
+      display: block
+      a
+        text-align: center
+        padding: 15px 10px
+        position: relative
+        display: block
+        color: $grey
+        &:hover
+          color: $white
+          background-color: mix(white, $purple, 15%)
+        &.active
+          background-color: $purple
+          color: $white
+        &.spacer-link
+          min-height: 51px
+          background-color: mix(white, $purple, 75%)
+      i
+        font-size: 14px
+        vertical-align: middle
+        width: 16px
+        text-align: center
