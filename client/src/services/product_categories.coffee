@@ -3,7 +3,7 @@ angular.module('client').factory 'ProductCategory',
   ($resource) ->
 
 
-    ProductCategory = $resource "/api/products/:id", {id: "@id"},
+    ProductCategory = $resource "/api/product_categories/:id", {id: "@id"},
       {
         update:
           method: 'PATCH'

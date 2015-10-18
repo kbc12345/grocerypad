@@ -13,22 +13,22 @@ angular.module('CategoryModal').controller 'CategoryModalCtrl',
       $rootScope.growl.error(MESSAGES.FORM_ERROR)
 
   evalAction = ->
-    if !!$scope.category
+    if !!$scope.category.id
       update()
     else
       create()
 
   create =(obj)->
-    ProductCategory.save(category: $scope.category).$promise
+    ProductCategory.save(product_category: $scope.category).$promise
       .then (data) ->
-        obj = data
         $scope.categories.unshift data
         $rootScope.growl.success(MESSAGES.CREATE_SUCCESS)
+        $scope.toggle = false
       .finally ->
         $scope.disableAction = false
 
   update =->
-    ProductCategory.update({id: $scope.category.id, category: $scope.category}).$promise
+    ProductCategory.update({id: $scope.category.id, product_category: $scope.category}).$promise
       .then (data) ->
         updateCollection()
         $rootScope.growl.success(MESSAGES.UPDATE_SUCCESS)

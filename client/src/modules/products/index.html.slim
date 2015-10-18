@@ -3,12 +3,12 @@ page-header title="Products"
 .page-wrap
   .row
     .col-md-7
-      product-list products="products" ui-state="uiState" product="temp.product"
+      product-list products="temp.products" ui-state="uiState" product="temp.product"
 
     .col-md-5
-      category-list categories="categories" ui-state="uiState" category="temp.category"
+      category-list categories="temp.categories" ui-state="uiState" category="temp.category"
 
 
-product-modal products="products" product="temp.product" toggle="uiState.productModal"
 
-category-modal products="categories" category="temp.category" toggle="uiState.categoryModal"
+product-modal products="temp.products" product="temp.product" toggle="uiState.productModal"
+category-modal categories="temp.categories" category="temp.category" toggle="uiState.categoryModal"

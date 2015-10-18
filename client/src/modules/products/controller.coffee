@@ -1,4 +1,4 @@
-Ctrl = ($scope,$rootScope)->
+Ctrl = ($scope,$rootScope,Product,ProductCategory)->
 
 
   NProgress.done()
@@ -7,10 +7,20 @@ Ctrl = ($scope,$rootScope)->
     productModal: false
     categoryModal: false
     pagination: false
+    productLoad: false
+    categoryLoad: false
 
   $scope.temp =
     product: id: null
     category: id: null
+    categories: []
+    products: []
+
+  ProductCategory.getList().$promise
+    .then (data) ->
+      $scope.temp.categories = data.collection
+    .finally ->
+      $scope.uiState.categoryLoad = true
 
   $scope.products = [
     {
@@ -48,5 +58,5 @@ Ctrl = ($scope,$rootScope)->
     }
   ]
 
-Ctrl.$inject = ['$scope','$rootScope']
+Ctrl.$inject = ['$scope','$rootScope','Product','ProductCategory']
 angular.module('client').controller('ProductsCtrl', Ctrl)

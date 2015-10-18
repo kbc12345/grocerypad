@@ -1,11 +1,11 @@
-module Common 
+module Common
   extend ActiveSupport::Concern
 
-  private 
+  private
 
   def create_helper
     if @obj.save
-      render json: { id: @obj.id }
+      render json: @obj
     else
       obj_errors
     end
