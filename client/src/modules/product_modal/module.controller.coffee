@@ -22,7 +22,7 @@ angular.module('ProductModal').controller 'ProductModalCtrl',
     Product.save(product_category_id: $scope.product.product_category_id, product: $scope.product).$promise
       .then (data) ->
         obj = data.product
-        obj.product_category = data.product_category
+        obj.product_category_name = data.product_category
         $scope.products.unshift obj
         $rootScope.growl.success(MESSAGES.CREATE_SUCCESS)
         $scope.toggle = false
