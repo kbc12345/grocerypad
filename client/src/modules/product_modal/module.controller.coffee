@@ -5,35 +5,41 @@ angular.module('ProductModal').controller 'ProductModalCtrl',
   $scope.disableAction = false
 
   $scope.submit =(form)->
-    $scope.disableAction = true
     form.$submitted = true
     if form.$valid
+      $scope.disableAction = true
       evalAction()
     else
-      $.growl.error {message: MESSAGES.FORM_ERROR}
+      $rootScope.growl.error(MESSAGES.FORM_ERROR)
 
   evalAction = ->
-    if $scope.obj.id
-      update($scope.obj,$scope.currentIndex)
+    if $scope.product.id
+      update()
     else
-      create($scope.obj)
+      create()
 
   create =(obj)->
-    Product.save(product: obj).$promise
+    Product.save(product: $scope.product).$promise
       .then (data) ->
         obj = data
         $scope.products.unshift data
-        $.growl.notice {message: MESSAGES.CREATE_SUCCESS}
+        $rootScope.growl.success(MESSAGES.CREATE_SUCCESS)
       .finally ->
         $scope.disableAction = false
 
-  update =(obj,index)->
-    Resource.update({id: obj.id, resource_type: $scope.resourceType}, resource: obj, update_linking_record: $scope.updateLinkingRecord).$promise
+  update =->
+    Resource.update({id: $scope.product.id, product: $scope.product}).$promise
       .then (data) ->
-        $scope.products[index] = obj
-        $.growl.notice {message: MESSAGES.UPDATE_SUCCESS}
+        updateCollection()
+        $rootScope.growl.success(MESSAGES.UPDATE_SUCCESSp)
         $scope.toggle = false
       .finally ->
         $scope.disableAction = false
+
+  updateCollection = ->
+    for obj in $scope.products
+      if obj.id == $scope.product.id
+        obj = $scope.product
+        break
 
 ]

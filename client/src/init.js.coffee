@@ -7,6 +7,7 @@ angular.module(
     'templates',
     'ngResource',
     'ngAnimate',
+    'angular-growl',
     'ngEnter',
     'DatePicker',
     'ActiveSelect',
