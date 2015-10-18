@@ -14,6 +14,7 @@ angular.module(
     'Sidebar',
     'Logs',
     'ToggableField',
-    'Header'
+    'Header',
+    'PageHeader'
   ]
 )

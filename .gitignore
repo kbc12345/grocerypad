@@ -44,4 +44,3 @@ config/redis.yml
 /vendor/assets/bower_components
 /client/bower_components
 *.bowerrc
-bower.json
