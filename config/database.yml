@@ -4,7 +4,7 @@ development:
   database: grocerypad_development
   pool: 5
   username: postgres
-  password: admin
+  password: chung555
   host: localhost
 
 test:
@@ -13,5 +13,5 @@ test:
   database: grocerypad_test
   pool: 5
   username: postgres
-  password: admin
+  password: chung555
   host: localhost
