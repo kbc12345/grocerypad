@@ -21,6 +21,9 @@ angular.module(
     'ProductModal',
     'ProductStatus',
     'CategoryList',
-    'CategoryModal'
+    'CategoryModal',
+    'Reminders',
+    'GrocerySearch',
+    'GroceryList'
   ]
 )
