@@ -2,8 +2,6 @@
 //= require sweetalert/dist/sweetalert.min
 //= require nprogress/nprogress
 
-//= require moment/moment
-//= require pikaday/pikaday
 
 //= require angular/angular
 //= require ng-file-upload/ng-file-upload
@@ -16,7 +14,10 @@
 //= require angular-ui-router/release/angular-ui-router
 //= require angular-rails-templates
 
-//= require_tree ./vendor
+//= require moment/moment
+//= require pikaday/pikaday
+//= require satellizer/satellizer
+
 //= require init
 //= require_tree ./config
 //= require_tree ./filters

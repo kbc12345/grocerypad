@@ -19,6 +19,7 @@ angular.module(
     'ProductList',
     'ProductCategories',
     'ProductModal',
-    'ProductStatus'
+    'ProductStatus',
+    'satellizer'
   ]
 )

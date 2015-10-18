@@ -16,6 +16,7 @@ gem 'aws-sdk', '< 2.0'
 gem 'angular-rails-templates','0.1.3'
 gem 'factory_girl_rails'
 gem 'faker'
+gem 'figaro'
 
 group :development, :test do
   gem 'api_matchers'

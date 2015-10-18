@@ -28,43 +28,43 @@
               )
 
           .panel-footer
-            a.btn.btn-primary.btn-block ng-click="login(loginForm)"  href="#" Login
+            a.btn.btn-primary.btn-block ng-click="authenticate('google')"  href="#" Login
 
-.modal.open ng-show="openModal"
-  form  name="form"
-    .modal-dialog
-      .modal-header
-        a.btn-close ng-click="openModal = false" ×
-        h4 Products
-
-      .modal-body
-
-        form name="loginForm"
-
-          .form-group
-            label Username
-            input.form-control(
-              type="text"
-              name="username"
-              ng-model="credentials.username"
-              required=""
-              ng-enter="login(loginForm)"
-            )
-
-
-          .form-group
-            label Password
-            input.form-control(
-              type="text"
-              name="password"
-              ng-model="credentials.password"
-              required=""
-              ng-enter="login(loginForm)"
-            )
-
-      .modal-footer
-        .row
-          .col-md-12
-            .btn-group.pull-right
-              a.btn.btn-default ng-click="openModal = false" Cancel
-              a.btn.btn-primary ng-click="save(form)" ng-class="{disabled: disabledSubmit}" Save
+/ .modal.open ng-show="openModal"
+/   form  name="form"
+/     .modal-dialog
+/       .modal-header
+/         a.btn-close ng-click="openModal = false" ×
+/         h4 Products
+/
+/       .modal-body
+/
+/         form name="loginForm"
+/
+/           .form-group
+/             label Username
+/             input.form-control(
+/               type="text"
+/               name="username"
+/               ng-model="credentials.username"
+/               required=""
+/               ng-enter="login(loginForm)"
+/             )
+/
+/
+/           .form-group
+/             label Password
+/             input.form-control(
+/               type="text"
+/               name="password"
+/               ng-model="credentials.password"
+/               required=""
+/               ng-enter="login(loginForm)"
+/             )
+/
+/       .modal-footer
+/         .row
+/           .col-md-12
+/             .btn-group.pull-right
+/               a.btn.btn-default ng-click="openModal = false" Cancel
+/               a.btn.btn-primary ng-click="save(form)" ng-class="{disabled: disabledSubmit}" Save
