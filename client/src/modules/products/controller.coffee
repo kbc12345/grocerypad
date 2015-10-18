@@ -1,5 +1,8 @@
 Ctrl = ($scope,$rootScope)->
 
+
+  NProgress.done()
+
   $scope.products = [
     {
       name: "Prodyct X"

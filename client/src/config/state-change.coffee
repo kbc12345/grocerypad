@@ -15,13 +15,12 @@ angular.module('client').run [
       userId = localStorage.getItem('UserId')
       # disables polling on state change
       $rootScope.polling = false
-
       if $rootScope.authenticatorFlag
         event.preventDefault()
         $rootScope.authenticatorFlag = false
         $http.defaults.headers.common.Authorization = authToken
         $http.defaults.headers.common.UserId = userId
-        $http.defaults.headers.accept = 'application/pdf'
+
         if !!authToken
           Session.getCurrentUser().$promise
             .then (data) ->
@@ -41,7 +40,7 @@ angular.module('client').run [
     # so that it will go authentication on every state change (if state is authenticable)
     $rootScope.$on '$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) ->
       $rootScope.authenticatorFlag = true
-      $rootScope.startLoading()
+      NProgress.start()
 
     # Refactor?
     # this works perfectly though
