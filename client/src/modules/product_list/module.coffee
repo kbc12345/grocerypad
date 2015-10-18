@@ -8,3 +8,4 @@ module.directive 'productList',->
   controller: "ProductListCtrl"
   scope:
     products: "="
+    uiState: "="

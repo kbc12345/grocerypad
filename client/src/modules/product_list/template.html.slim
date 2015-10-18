@@ -11,7 +11,7 @@
             th Product
             th Category
             th Price
-            th Stock level
+            th Current Stock level
         tbody
           tr ng-repeat="obj in products"
             td ng-bind="obj.name"
@@ -23,6 +23,3 @@
                 a.icon-logs href="#"
                 a.icon-edit href="#"
                 a.icon-delete href="#"
-
-
-  product-modal products="products" product="product" toggle="uiState.modal"

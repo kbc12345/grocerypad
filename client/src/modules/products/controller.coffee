@@ -3,6 +3,10 @@ Ctrl = ($scope,$rootScope)->
 
   NProgress.done()
 
+  $scope.uiState =
+    modal: false
+    pagination: false
+    
   $scope.products = [
     {
       name: "Prodyct X"

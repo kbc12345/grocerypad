@@ -2,9 +2,10 @@ angular.module('ProductModal').controller 'ProductModalCtrl',
 ['$scope','$rootScope'
 ($scope,$rootScope) ->
 
-  $scope.submit = false
+  $scope.disableAction = false
 
   $scope.submit =(form)->
+    $scope.disableAction = true
     form.$submitted = true
     if form.$valid
       evalAction()
@@ -23,9 +24,8 @@ angular.module('ProductModal').controller 'ProductModalCtrl',
         obj = data
         $scope.products.unshift data
         $.growl.notice {message: MESSAGES.CREATE_SUCCESS}
-        $scope.toggle = false
       .finally ->
-        $scope.submit = false
+        $scope.disableAction = false
 
   update =(obj,index)->
     Resource.update({id: obj.id, resource_type: $scope.resourceType}, resource: obj, update_linking_record: $scope.updateLinkingRecord).$promise
@@ -34,6 +34,6 @@ angular.module('ProductModal').controller 'ProductModalCtrl',
         $.growl.notice {message: MESSAGES.UPDATE_SUCCESS}
         $scope.toggle = false
       .finally ->
-        $scope.submit = false
+        $scope.disableAction = false
 
 ]
