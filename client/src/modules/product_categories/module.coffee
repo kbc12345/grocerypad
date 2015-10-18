@@ -9,3 +9,4 @@ module.directive 'categoryList',->
   scope:
     categories: "="
     uiState: "="
+    category: "="

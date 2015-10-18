@@ -8,6 +8,10 @@ Ctrl = ($scope,$rootScope)->
     categoryModal: false
     pagination: false
 
+  $scope.temp =
+    product: id: null
+    category: id: null
+
   $scope.products = [
     {
       name: "Prodyct X"

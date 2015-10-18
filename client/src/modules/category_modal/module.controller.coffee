@@ -13,7 +13,7 @@ angular.module('CategoryModal').controller 'CategoryModalCtrl',
       $rootScope.growl.error(MESSAGES.FORM_ERROR)
 
   evalAction = ->
-    if $scope.category.id
+    if !!$scope.category
       update()
     else
       create()

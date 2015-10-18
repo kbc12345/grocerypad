@@ -1,6 +1,6 @@
 angular.module('CategoryList').controller 'CategoryListCtrl',
 ['$scope','$rootScope','ProductCategory'
-($scope,$rootScope) ->
+($scope,$rootScope,ProductCategory) ->
 
   $scope.toggleModal =(category) ->
     $scope.category = category
