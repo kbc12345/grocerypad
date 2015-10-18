@@ -24,7 +24,10 @@ class ApiController < ApplicationController
 
 
   def current_user
-    @current_user ||= User.find_by(access_token: access_token) if access_token
+    # @current_user ||= User.find_by(access_token: access_token) if access_token
+    # temp fix
+    # NOTE: change this once mark is finished with oauth
+    @current_user ||= User.first
   end
 
   def access_token
