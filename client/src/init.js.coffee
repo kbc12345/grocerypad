@@ -7,6 +7,7 @@ angular.module(
     'templates',
     'ngResource',
     'ngAnimate',
+    'angular-growl',
     'ngEnter',
     'DatePicker',
     'ActiveSelect',
@@ -18,5 +19,12 @@ angular.module(
     'PageHeader',
     'ProductList',
     'ProductCategories'
+    'ProductModal',
+    'ProductStatus',
+    'CategoryList',
+    'CategoryModal',
+    'Reminders',
+    'GrocerySearch',
+    'GroceryList'
   ]
 )

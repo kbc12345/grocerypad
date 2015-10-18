@@ -2,6 +2,42 @@
 @TIMESTAMP_FORMAT = "MMM DD, YYYY hh:mm:ss"
 @DEFAULT_PER_PAGE = 10
 
+@PRODUCT_STATUS_ALL= [
+  {
+    label: 'All'
+    value: ''
+  }
+  {
+    label: 'Active'
+    value: 'true'
+  }
+  {
+    label: 'Inactive'
+    value: 'false'
+  }
+
+]
+
+
+@PRODUCT_STATUS= [
+  {
+    label: 'Depleted'
+    value: 'Depleted'
+  }
+  {
+    label: 'Low'
+    value: 'Low'
+  }
+  {
+    label: 'Mid'
+    value: 'Mid'
+  }
+  {
+    label: 'High'
+    value: 'High'
+  }
+]
+
 @MONTHS = [
   {key: "1", value: "January"},
   {key: "2", value: "Feburary"},

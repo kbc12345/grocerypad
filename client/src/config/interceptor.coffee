@@ -15,6 +15,14 @@ angular.module('client').factory('httpInterceptor', [
             $injector.get('$state').go("login")
           when 500,422
             $.growl.error {message: message}
+            $rootScope.growl.error  message
+            $injector.get('$state').go("admin.dashboard")
+          when 401
+            $rootScope.growl.error  message
+            $rootScope.clearSession()
+            $injector.get('$state').go("login")
+          when 500,422
+            $rootScope.growl.error  message
         $q.reject(response)
 
     }

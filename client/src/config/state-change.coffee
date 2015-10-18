@@ -15,7 +15,6 @@ angular.module('client').run [
       userId = localStorage.getItem('UserId')
       # disables polling on state change
       $rootScope.polling = false
-
       if $rootScope.authenticatorFlag
         event.preventDefault()
         $rootScope.authenticatorFlag = false
@@ -42,6 +41,7 @@ angular.module('client').run [
     $rootScope.$on '$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) ->
       $rootScope.authenticatorFlag = true
       $rootScope.startLoading()
+      NProgress.start()
 
     # Refactor?
     # this works perfectly though

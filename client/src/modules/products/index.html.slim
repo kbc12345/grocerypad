@@ -7,3 +7,12 @@ page-header title="Products"
 
     .col-md-5
       product-categories categories="categories"
+      product-list products="temp.products" ui-state="uiState" product="temp.product"
+
+    .col-md-5
+      category-list categories="temp.categories" ui-state="uiState" category="temp.category"
+
+
+
+product-modal products="temp.products" product="temp.product" toggle="uiState.productModal" categories="temp.categories"
+category-modal categories="temp.categories" category="temp.category" toggle="uiState.categoryModal"
