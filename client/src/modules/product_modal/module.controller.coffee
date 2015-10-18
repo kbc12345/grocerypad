@@ -28,10 +28,10 @@ angular.module('ProductModal').controller 'ProductModalCtrl',
         $scope.disableAction = false
 
   update =->
-    Resource.update({id: $scope.product.id, product: $scope.product}).$promise
+    Product.update({id: $scope.product.id, product: $scope.product}).$promise
       .then (data) ->
         updateCollection()
-        $rootScope.growl.success(MESSAGES.UPDATE_SUCCESSp)
+        $rootScope.growl.success(MESSAGES.UPDATE_SUCCESS)
         $scope.toggle = false
       .finally ->
         $scope.disableAction = false
