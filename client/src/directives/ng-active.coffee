@@ -4,7 +4,7 @@ module = angular.module("NgActive", [])
 module.directive 'ngActive', [
   '$location'
   ($location) ->
-    restrict: 'C'
+    restrict: 'A'
     link: ($scope, $element, $attrs) ->
       $scope.location = $location
       $scope.$watch 'location.$$url', (currentUrl) ->

@@ -15,6 +15,8 @@ angular.module(
     'Logs',
     'ToggableField',
     'Header',
-    'PageHeader'
+    'PageHeader',
+    'ProductList',
+    'ProductCategories'
   ]
 )

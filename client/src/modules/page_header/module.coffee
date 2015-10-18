@@ -1,11 +1,11 @@
 module = angular.module("PageHeader", [])
 
 
-module.directive 'peageHeader', [
+module.directive 'pageHeader', [
   '$location',
   ($location) ->
 
-    restrict: 'A'
+    restrict: 'E'
     replace: true
     templateUrl: 'modules/page_header/template.html'
     scope:
