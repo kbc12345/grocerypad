@@ -14,10 +14,11 @@ Ctrl = ($scope,$state,$auth,Session)->
 
   $scope.authenticate = (provider) ->
     $auth.authenticate(provider)
-      .then (data) ->
-        debugger;
-      .catch (err) ->
-        debugger;
+      .then (obj) ->
+        localStorage.setItem("AuthToken", obj.data.user.auth_token)
+        localStorage.setItem("UserId",  obj.data.user.id)
+        $.growl.notice {message: MESSAGES.LOGIN_SUCCESS}
+        $state.go(ROOT_PATH)
 
 Ctrl.$inject = ['$scope','$state','$auth','Session']
 angular.module('client').controller('LoginCtrl', Ctrl)

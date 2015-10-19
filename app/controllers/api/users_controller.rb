@@ -1,10 +1,16 @@
 class Api::UsersController < ApiController
 
+  skip_before_action :authenticate_request, only: %w(create)
   before_action :find_obj, except: [:index, :create]
 
   def create
-    @obj = User.new(obj_params)
-    create_helper
+    google_user = Oauth::GoogleAuthenticator.new(params).fetch_user
+    user = User.find_or_initialize_by(email: google_user[:emails].first["value"])
+
+    user.update(access_token: google_user[:access_token])
+    sign_in user
+
+    render json: {token: user.access_token, user: user}
   end
 
   def update

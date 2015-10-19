@@ -5,6 +5,14 @@ class User < ActiveRecord::Base
   validate :validate_password_presence
   validate :validate_password_length
 
+  before_save :ensure_authentication_token
+
+  def ensure_authentication_token
+    if auth_token.blank?
+      self.auth_token = generate_authentication_token
+    end
+  end
+
   def validate_password_presence
     if (new_record? && @password.blank?) || (!@password.nil? && @password.empty?)
       errors.add(:password, "can't be blank")
@@ -20,9 +28,12 @@ class User < ActiveRecord::Base
   def full_name
     "#{self.first_name} #{self.last_name}"
   end
-  
-  def set_access_token
-    self.update(access_token: SecureRandom.hex(50))
+
+  def generate_authentication_token
+    loop do
+      token = Devise.friendly_token
+      break token unless User.where(auth_token: token).first
+    end
   end
 
   def destroy_access_token

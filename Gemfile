@@ -17,6 +17,9 @@ gem 'angular-rails-templates','0.1.3'
 gem 'factory_girl_rails'
 gem 'faker'
 gem 'figaro'
+gem 'google-api-client', '0.8.2', require: 'google/api_client'
+gem 'httparty'
+gem 'devise'
 
 group :development, :test do
   gem 'api_matchers'
