@@ -14,7 +14,6 @@ Ctrl = ($scope,$rootScope,Grocery,GroceryItem,Product)->
     Grocery.getList(query: $scope.query).$promise
       .then (data) ->
         $scope.collection = data
-        debugger
 
   $scope.getCollection()
   # $scope.collection = [

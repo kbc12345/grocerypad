@@ -12,9 +12,7 @@ module Builder
         year: @grocery.year,
         half: @grocery.half,
         status: @grocery.status,
-        items: [
-          @collection
-        ]
+        items: @collection
       }
     end
 
