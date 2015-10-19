@@ -12,9 +12,8 @@ class Api::GroceriesController < ApiController
   end
 
   def index
-    @grocery = Grocery.find_grocery(params[:month], params[:year], params[:half])
-    @collection = @grocery.find_grocery_items(@grocery.id)
-    render json: @grocery.create_json(@grocery, @collection)
+    @grocery = Grocery.where(month: params[:month], year: params[:year], half: params[:half]).first
+    render json: Builder::Groceries.new(@grocery).build
   end
 
   def destroy
