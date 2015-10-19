@@ -1,4 +1,3 @@
-Ctrl = ($scope,$rootScope)->
 Ctrl = ($scope,$rootScope,Product,ProductCategory)->
 
 
@@ -60,6 +59,5 @@ Ctrl = ($scope,$rootScope,Product,ProductCategory)->
     }
   ]
 
-Ctrl.$inject = ['$scope','$rootScope']
 Ctrl.$inject = ['$scope','$rootScope','Product','ProductCategory']
 angular.module('client').controller('ProductsCtrl', Ctrl)

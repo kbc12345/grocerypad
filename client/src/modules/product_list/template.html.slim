@@ -1,28 +1,3 @@
-.panel
-  .panel-heading
-    span Product List
-    .action-group
-      a.icon-plus href="#"
-  .panel-body.condensed
-    table.table.table-hover
-      thead
-        tr
-          th Product
-          th Category
-          th Price
-          th Stock level
-      tbody
-        tr ng-repeat="obj in products"
-          td ng-bind="obj.name"
-          td ng-bind="obj.product_category"
-          td ng-bind="obj.price.formatMoney()"
-          td
-            span ng-bind="obj.status"
-            .action-group
-              a.icon-logs href="#"
-              a.icon-edit href="#"
-              a.icon-delete href="#"
-
 .product-list
   .panel
     .panel-heading

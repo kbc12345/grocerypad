@@ -2,7 +2,6 @@
   .panel-heading
     span Categories
     .action-group
-      a.icon-plus href="#"
       a.icon-plus ng-click="toggleModal(null)"
   .panel-body.condensed
     table.table.table-hover
@@ -11,12 +10,6 @@
           th Name
       tbody
         tr ng-repeat="obj in categories"
-          td
-            span ng-bind="obj.name"
-            .action-group
-              a.icon-logs href="#"
-              a.icon-edit href="#"
-              a.icon-delete href="#"
           td.xl
             span ng-bind="obj.name"
             .action-group

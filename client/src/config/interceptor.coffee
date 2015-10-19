@@ -7,14 +7,6 @@ angular.module('client').factory('httpInterceptor', [
         message = response.data.error or response.data.errors?.join("<br><br>") or 'Something went wrong'
         switch response.status
           when 403
-            $.growl.error {message: message}
-            $injector.get('$state').go("admin.dashboard")
-          when 401
-            $.growl.error {message: message}
-            $rootScope.clearSession()
-            $injector.get('$state').go("login")
-          when 500,422
-            $.growl.error {message: message}
             $rootScope.growl.error  message
             $injector.get('$state').go("admin.dashboard")
           when 401

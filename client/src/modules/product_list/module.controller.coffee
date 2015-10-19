@@ -1,10 +1,3 @@
-
-angular.module('ProductList').controller 'ProductsCtrl',
-['$scope','$rootScope'
-($scope,$rootScope) ->
-
-
-
 angular.module('ProductList').controller 'ProductListCtrl',
 ['$scope','$rootScope','Product'
 ($scope,$rootScope,Product) ->

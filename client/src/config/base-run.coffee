@@ -1,5 +1,4 @@
 angular.module('client').run [
-  '$rootScope','$state',($rootScope,$state) ->
   '$rootScope','$state','growl',($rootScope,$state,growl) ->
 
     $rootScope.clearSession = ->
