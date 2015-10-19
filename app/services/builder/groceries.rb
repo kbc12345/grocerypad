@@ -8,6 +8,7 @@ module Builder
     def build
       @collection = get_items_list
       {
+        id: @grocery.id,
         month: @grocery.month,
         year: @grocery.year,
         half: @grocery.half,

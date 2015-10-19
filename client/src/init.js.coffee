@@ -24,6 +24,7 @@ angular.module(
     'CategoryModal',
     'Reminders',
     'GrocerySearch',
-    'GroceryList'
+    'GroceryList',
+    'GroceryForms'
   ]
 )
