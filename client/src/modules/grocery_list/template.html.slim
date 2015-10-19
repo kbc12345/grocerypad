@@ -1,8 +1,8 @@
-.panel ng-repeat="obj in collection"
+.panel ng-repeat="obj in collection.items"
   .panel-heading
     .action-group.left
       a.icon-down ng-click="obj.hide = !obj.hide"
-    span ng-bind="obj.product_category"
+    span ng-bind="obj.product_category_name"
     .action-group
       a.icon-plus href="#"
 
