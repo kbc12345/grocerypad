@@ -15,7 +15,9 @@ class Grocery < ActiveRecord::Base
 
   def grocery_items_full_details
     GroceryItem.select(INDEX_DETAILS).
-    from("products inner join grocery_items on products.id = grocery_items.product_id inner join product_categories on product_categories.id = products.product_category_id").
+    from("products, grocery_items, product_categories").
+    where("products.id = grocery_items.product_id").
+    where("products.product_category_id = product_categories.id").
     where("grocery_items.grocery_id = ?", self.id)
   end
 
