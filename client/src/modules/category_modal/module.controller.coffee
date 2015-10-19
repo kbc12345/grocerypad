@@ -1,6 +1,6 @@
-angular.module('ProductModal').controller 'ProductModalCtrl',
-['$scope','$rootScope','Product'
-($scope,$rootScope,Product) ->
+angular.module('CategoryModal').controller 'CategoryModalCtrl',
+['$scope','$rootScope','ProductCategory'
+($scope,$rootScope,ProductCategory) ->
 
   $scope.disableAction = false
 
@@ -13,24 +13,22 @@ angular.module('ProductModal').controller 'ProductModalCtrl',
       $rootScope.growl.error(MESSAGES.FORM_ERROR)
 
   evalAction = ->
-    if !!$scope.product.id
+    if !!$scope.category.id
       update()
     else
       create()
 
   create =(obj)->
-    Product.save(product_category_id: $scope.product.product_category_id, product: $scope.product).$promise
+    ProductCategory.save(product_category: $scope.category).$promise
       .then (data) ->
-        obj = data.product
-        obj.product_category_name = data.product_category
-        $scope.products.unshift obj
+        $scope.categories.unshift data
         $rootScope.growl.success(MESSAGES.CREATE_SUCCESS)
         $scope.toggle = false
       .finally ->
         $scope.disableAction = false
 
   update =->
-    Product.update({id: $scope.product.id, product: $scope.product}).$promise
+    ProductCategory.update({id: $scope.category.id, product_category: $scope.category}).$promise
       .then (data) ->
         updateCollection()
         $rootScope.growl.success(MESSAGES.UPDATE_SUCCESS)
@@ -39,9 +37,9 @@ angular.module('ProductModal').controller 'ProductModalCtrl',
         $scope.disableAction = false
 
   updateCollection = ->
-    for obj in $scope.products
-      if obj.id == $scope.product.id
-        obj = $scope.product
+    for obj in $scope.categories
+      if obj.id == $scope.category.id
+        obj = $scope.category
         break
 
 ]

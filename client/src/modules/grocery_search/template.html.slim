@@ -1,0 +1,18 @@
+.panel
+  .panel-heading Search
+  .panel-body
+    form.search-form name="searchForm"
+      .col-md-4
+        .from-group
+          select.form-control ng-model="query.month" ng-options="opt as opt.value for opt in months"
+      .col-md-3
+        input.form-control(ng-model="query.year"
+          name="year"
+          required="true"
+          ng-class="{error: searchForm.year.$error.required && searchForm.$submitted}"
+          ng-enter="search(searchForm)"
+          placeholder="Year")
+      .col-md-2
+        select.form-control ng-model="query.divisions" ng-options="opt as opt.value for opt in divisions"
+      .col-md-1
+        a.icon-search href="#"

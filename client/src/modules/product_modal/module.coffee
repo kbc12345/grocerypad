@@ -9,3 +9,4 @@ module.directive 'productModal',->
     products: "="
     product: "="
     toggle: "="
+    categories: "="

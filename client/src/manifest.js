@@ -4,7 +4,7 @@
 
 
 //= require angular/angular
-//= require ng-file-upload/ng-file-upload
+//= require angular-growl-v2/build/angular-growl.min
 //= require angular-ui-select/dist/select.min
 //= require angular-sanitize/angular-sanitize.min
 //= require angular-animate/angular-animate.min

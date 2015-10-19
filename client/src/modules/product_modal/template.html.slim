@@ -1,8 +1,8 @@
-.modal.open ng-if="toggle"
+.modal.open ng-show="toggle"
   form name="form"
     .modal-dialog
       .modal-header
-        a.btn-close ng-click="modal = false" ×
+        a.btn-close ng-click="toggle=!toggle" ×
         h4 Product
 
       .modal-body
@@ -24,19 +24,30 @@
             label Price
             input.form-control(
               type="text"
-              name="name"
+              name="price"
               ng-model="product.price"
               required=""
               ng-numeric=""
               ng-enter="submit(form)"
-              ng-class="{error: form.name.$error.required && form.$submitted}")
+              ng-class="{error: form.price.$error.required && form.$submitted}")
+
+          .form-group
+            label Category
+            select.form-control(
+              ng-model="product.product_category_id"
+              required=""
+              name="product_category_id"
+              ng-options="obj.id as obj.name for obj in categories"
+              ng-class="{error: form.product_category_id.$error.required && form.$submitted}"
+            )
+
 
 
           .form-group
-            label Status
+            label Current Stock level
             input status="product.status" product-status="" complete="false"
 
       .modal-footer
         .row
           .col-md-12
-            a.btn.btn-success ng-click="submit(form)"  ng-class="{disabled: submit}" Save
+            a.btn.btn-success ng-click="submit(form)" ng-class="{disabled: disableAction}" Save

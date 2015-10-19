@@ -3,9 +3,17 @@ class Api::ProductsController < ApiController
   before_action :find_obj, except: [:index, :create]
   before_action :find_cat, only: :create
 
+  def index
+    render json: Product.complete_details
+  end
+
   def create
     @obj = @category.products.new(obj_params.merge({creator_id: current_user.id, updator_id: current_user.id}))
-    create_helper
+    if @obj.save
+      render json: {product: @obj, product_category: @category.name}
+    else
+      obj_errors
+    end
   end
 
   def update
@@ -13,9 +21,6 @@ class Api::ProductsController < ApiController
     update_helper
   end
 
-  def index
-    render json: Product.where(product_category_id: params[:product_category_id]).order("name")
-  end
 
   def destroy
     delete_helper
@@ -31,6 +36,7 @@ class Api::ProductsController < ApiController
     params.require(:product).permit(*%i(
       name
       price
+      status
     ))
   end
 

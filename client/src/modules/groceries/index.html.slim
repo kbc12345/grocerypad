@@ -3,63 +3,7 @@ page-header title="Groceries"
 .page-wrap
   .row
     .col-md-8
-      .panel
-        .panel-heading Search
-        .panel-body
-          form.search-form name="searchForm"
-            .col-md-4
-              .from-group
-                select.form-control ng-model="query.month" ng-options="opt as opt.value for opt in months"
-            .col-md-3
-              input.form-control(ng-model="query.year"
-                name="year"
-                required="true"
-                ng-class="{error: searchForm.year.$error.required && searchForm.$submitted}"
-                ng-enter="search(searchForm)"
-                placeholder="Year")
-            .col-md-2
-              select.form-control ng-model="query.divisions" ng-options="opt as opt.value for opt in divisions"
-            .col-md-1
-              a.icon-search href="#"
-
-
-      .panel ng-repeat="obj in collection"
-        .panel-heading
-          .action-group.left
-            a.icon-down ng-click="obj.hide = !obj.hide"
-          span ng-bind="obj.product_category"
-          .action-group
-            a.icon-plus href="#"
-
-        .panel-body.condensed ng-if="!obj.hide"
-          table.table.table-hover
-            thead
-              tr
-                th Product
-                th Stock Level
-                th Quantity
-                th Price
-                th Total
-            tbody
-              tr ng-repeat="item in obj.grocery_items"
-                td ng-bind="item.product_name"
-                td ng-bind="item.product_status"
-                td
-                  span ng-bind="item.quantity" ng-if="!item.editMode"
-                  input.form-control ng-model="item.quantity" ng-if="item.editMode"
-                td ng-bind="item.price.formatMoney()"
-                td
-                  span ng-bind="(item.price*item.quantity).formatMoney()"
-                  .action-group
-                    a.icon-logs href="#"
-                    a.icon-edit href="#"
-                    a.icon-delete href="#"
-              tr.no-hover
-                td colspan="3"
-                td Total:
-                td
-                  strong ng-bind="obj.total_price.formatMoney()"
+      grocery-search
+      grocery-list collection="collection"
     .col-md-4
-      .panel
-        .panel-heading Reminders
-        .panel-body
+      reminders collection="reminders"

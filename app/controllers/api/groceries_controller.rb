@@ -12,7 +12,8 @@ class Api::GroceriesController < ApiController
   end
 
   def index
-    render json: {collection: Grocery.all}
+    @grocery = Grocery.where(month: params[:month], year: params[:year], half: params[:half]).first
+    render json: Builder::Groceries.new(@grocery).build
   end
 
   def destroy
@@ -21,10 +22,10 @@ class Api::GroceriesController < ApiController
 
   def obj_params
     params.require(:grocery).permit(*%i(
-      status
       month
       year
       half
+      status
     ))
   end
 

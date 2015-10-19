@@ -14,15 +14,12 @@
             th Stock level
         tbody
           tr ng-repeat="obj in products"
-            td ng-bind="obj.name"
-            td ng-bind="obj.product_category"
+            td.xl ng-bind="obj.name"
+            td ng-bind="obj.product_category_name"
             td ng-bind="obj.price.formatMoney()"
             td
               span ng-bind="obj.status"
               .action-group
                 a.icon-logs href="#"
-                a.icon-edit href="#"
-                a.icon-delete href="#"
-
-
-  product-modal products="products" product="product" toggle="uiState.modal"
+                a.icon-edit ng-click="toggleModal(obj)"
+                a.icon-delete ng-click="delete(obj)"

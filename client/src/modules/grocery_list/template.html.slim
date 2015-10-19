@@ -1,0 +1,39 @@
+.panel ng-repeat="obj in collection"
+  .panel-heading
+    .action-group.left
+      a.icon-down ng-click="obj.hide = !obj.hide"
+    span ng-bind="obj.product_category"
+    .action-group
+      a.icon-plus href="#"
+
+  .panel-body.condensed ng-if="!obj.hide"
+    table.table.table-hover
+      thead
+        tr
+          th Product
+          th Stock Level
+          th Quantity
+          th Price
+          th Total
+          th
+      tbody
+        tr ng-repeat="item in obj.grocery_items"
+          td.xl ng-bind="item.product_name"
+          td ng-bind="item.product_status"
+          td
+            span ng-bind="item.quantity" ng-if="!item.editMode"
+            input.form-control ng-model="item.quantity" ng-if="item.editMode"
+          td ng-bind="item.price.formatMoney()"
+          td
+            span ng-bind="(item.price*item.quantity).formatMoney()"
+          td
+            .action-group
+              a.icon-logs href="#"
+              a.icon-edit href="#"
+              a.icon-delete href="#"
+        tr.no-hover
+          td colspan="3"
+          td Total:
+          td
+            strong ng-bind="obj.total_price.formatMoney()"
+          td
