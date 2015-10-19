@@ -3,7 +3,7 @@ angular.module('client').factory 'GroceryItem',
   ($resource) ->
 
 
-    GroceryItem = $resource "/api/groceries/:grocery_id/grocery_items/:id", {id: "@id", grocery_id: "@grocery_id"},
+    GroceryItem = $resource "/api/grocery_items/:id", {id: "@id"},
       {
         update:
           method: 'PATCH'

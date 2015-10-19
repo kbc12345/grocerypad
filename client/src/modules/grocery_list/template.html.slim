@@ -30,7 +30,7 @@
             .action-group
               a.icon-logs href="#"
               a.icon-edit ng-click="toggleModal(obj,item)"
-              a.icon-delete href="#"
+              a.icon-delete ng-click="delete(item,$parent.$index)"
         tr.no-hover
           td colspan="3"
           td Total:

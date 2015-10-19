@@ -5,13 +5,10 @@ Rails.application.routes.draw do
     resources :users
     resources :products
     resources :product_categories
+    resources :grocery_items
+    resources :groceries
 
-    resources :groceries do
-      member do
-        resources :grocery_items
-      end
-    end
-    
+  
     resources :logs
   end
 

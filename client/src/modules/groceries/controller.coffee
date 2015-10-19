@@ -31,12 +31,12 @@ Ctrl = ($scope,$rootScope,Grocery,GroceryItem,Product)->
     $scope.temp.grocery_item = item
     obj.modal = !obj.modal
 
-  $scope.delete =(obj) ->
+  $scope.delete =(obj,index) ->
     swal DELETE_WARNING, ->
-      Product.remove(id: obj.id).$promise
+      GroceryItem.remove({id: obj.id,grocery_id: $scope.grocery.id}).$promise
         .then (data) ->
-          $.growl.notice {message: MESSAGES.DELETE_SUCCESS}
-          $scope.products.splice($scope.products.indexOf(obj),1)
+          $rootScope.growl.error(MESSAGES.DELETE_SUCCESS)
+          $scope.grocery.items[index].grocery_items.splice($scope.grocery.items[index].grocery_items.indexOf(obj),1)
 
   init()
 

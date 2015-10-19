@@ -10,7 +10,7 @@ angular.module('ProductList').controller 'ProductListCtrl',
     swal DELETE_WARNING, ->
       Product.remove(id: obj.id).$promise
         .then (data) ->
-          $.growl.notice {message: MESSAGES.DELETE_SUCCESS}
+          $rootScope.growl.error(MESSAGES.DELETE_SUCCESS)
           $scope.products.splice($scope.products.indexOf(obj),1)
 
 ]
