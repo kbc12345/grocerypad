@@ -12,6 +12,7 @@
             th Category
             th Price
             th Stock level
+            th.sm
         tbody
           tr ng-repeat="obj in products"
             td.xl ng-bind="obj.name"
@@ -19,6 +20,7 @@
             td ng-bind="obj.price.formatMoney()"
             td
               span ng-bind="obj.status"
+            td
               .action-group
                 a.icon-logs href="#"
                 a.icon-edit ng-click="toggleModal(obj)"

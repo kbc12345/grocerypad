@@ -8,10 +8,12 @@
       thead
         tr
           th Name
+          th.sm
       tbody
         tr ng-repeat="obj in categories"
-          td.xl
+          td width="90%"
             span ng-bind="obj.name"
+          td
             .action-group
               a.icon-logs ng-click=""
               a.icon-edit ng-click="toggleModal(obj)"
