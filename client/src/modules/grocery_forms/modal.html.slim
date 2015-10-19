@@ -1,37 +1,52 @@
-.modal.open ng-show="toggle"
+.modal.open ng-show="category.modal"
   form name="form"
     .modal-dialog
       .modal-header
-        a.btn-close ng-click="toggle=!toggle" ×
+        a.btn-close ng-click="category.modal=!category.modal" ×
         h4 Grocery Items
 
       .modal-body
 
         form name="form"
 
-          .form-group
-            label Product
-            ui-select ng-model="temp.product" theme="selectize"
-              ui-select-match placeholder="Search Product..." {{$select.selected.lookUpTitle()}}
-              ui-select-choices repeat="item in currentProducts  | filter: $select.search"
-                span ng-bind-html="item.lookUpTitle() | highlight: $select.search"
+          div ng-if="!groceryItem.id"
+            .form-group
+              label Product
+              ui-select ng-model="temp.product" theme="selectize"
+                ui-select-match placeholder="Search Product..." {{$select.selected.lookUpTitle()}}
+                ui-select-choices repeat="item in currentProducts  | filter: $select.search"
+                  span ng-bind-html="item.lookUpTitle() | highlight: $select.search"
+
+          div ng-if="!!groceryItem.id"
+            .form-group
+              label Product
+              input.form-control.disabled ng-model="groceryItem.product_name"
+            .form-group
+              label Status
+              input.form-control.disabled ng-model="groceryItem.product_status"
+            .form-group
+              label Price
+              input.form-control.disabled ng-model="groceryItem.price"
 
           .form-group
             label Quantity
             input.form-control(
               type="text"
               name="quantity"
-              ng-model="grocery_item.quantity"
+              ng-model="groceryItem.quantity"
               required=""
               ng-numeric=""
               ng-enter="submit(form)"
               ng-class="{error: form.quantity.$error.required && form.$submitted}")
 
-          /
-          / .form-group
-          /   label Quantity
-          /   input.form-control.disabled ng-value="grocery_item.quantity*temp.product.price"
-          /
+          .form-group ng-if="temp.product.price && !!groceryItem.quantity"
+            label Total
+            input.form-control.disabled ng-value="groceryItem.quantity*temp.product.price"
+
+          .form-group ng-if="!!groceryItem.id"
+            label Total
+            input.form-control.disabled ng-value="groceryItem.quantity*groceryItem.price"
+
 
       .modal-footer
         .row

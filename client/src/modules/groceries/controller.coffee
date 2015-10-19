@@ -6,7 +6,7 @@ Ctrl = ($scope,$rootScope,Grocery,GroceryItem,Product)->
     modal: false
 
   $scope.temp =
-    grocery_item: id: null
+    grocery_item: null
 
   $scope.months = MONTHS
   $scope.divisions = DIVISIONS
@@ -28,7 +28,7 @@ Ctrl = ($scope,$rootScope,Grocery,GroceryItem,Product)->
         $scope.grocery = data
 
   $scope.toggleModal =(obj,item) ->
-    $scope.temp.grocery_item = item
+    $scope.temp.grocery_item = angular.copy item
     obj.modal = !obj.modal
 
   $scope.delete =(obj,index) ->
@@ -37,6 +37,7 @@ Ctrl = ($scope,$rootScope,Grocery,GroceryItem,Product)->
         .then (data) ->
           $rootScope.growl.error(MESSAGES.DELETE_SUCCESS)
           $scope.grocery.items[index].grocery_items.splice($scope.grocery.items[index].grocery_items.indexOf(obj),1)
+          $scope.grocery.items[index].total_price -= obj.quantity*obj.price
 
   init()
 

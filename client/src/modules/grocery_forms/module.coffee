@@ -7,7 +7,7 @@ module.directive 'itemModal',->
   controller: "ItemModalCtrl"
   scope:
     collection: "="
-    grocery_item: "="
+    groceryItem: "="
     toggle: "="
     products: "="
     category: "="

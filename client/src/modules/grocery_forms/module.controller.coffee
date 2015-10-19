@@ -4,11 +4,13 @@ angular.module('GroceryForms').controller 'ItemModalCtrl',
 
   $scope.disableAction = false
   $scope.temp =
-    product: null
+    product: id: null
 
   $scope.currentProducts = []
   for obj in $scope.products
-    $scope.currentProducts.push(obj) if obj.product_category_id ==  $scope.category
+    $scope.currentProducts.push(obj) if obj.product_category_id ==  $scope.category.product_category_id
+
+  $scope.temp.product.price = $scope.groceryItem.price if !!$scope.groceryItem
 
   $scope.submit =(form)->
     form.$submitted = true
@@ -19,7 +21,7 @@ angular.module('GroceryForms').controller 'ItemModalCtrl',
       $rootScope.growl.error(MESSAGES.FORM_ERROR)
 
   evalAction = ->
-    if !!$scope.grocery_item.id
+    if !!$scope.groceryItem.id
       update()
     else
       create()
@@ -29,32 +31,36 @@ angular.module('GroceryForms').controller 'ItemModalCtrl',
       product_id: $scope.temp.product.id
       product_name: $scope.temp.product.name
       price: $scope.temp.product.price
-      total: $scope.temp.product.price*$scope.grocery_item.quantity
-      quantity: $scope.grocery_item.quantity
+      total: $scope.temp.product.price*$scope.groceryItem.quantity
+      quantity: $scope.groceryItem.quantity
       product_status: $scope.temp.product.status
 
     GroceryItem.save(grocery_id: $scope.groceryId, grocery_item: obj).$promise
       .then (data) ->
         obj.id = data.id
-        $scope.collection.unshift obj
+        $scope.category.grocery_items.unshift obj
+        $scope.category.total_price += obj.price*obj.quantity
         $rootScope.growl.success(MESSAGES.CREATE_SUCCESS)
-        $scope.toggle = false
+        $scope.category.modal = false
       .finally ->
         $scope.disableAction = false
 
   update =->
-    GroceryItem.update({grocery_id: $scope.groceryId,id: $scope.grocery_item.id, grocery_item: $scope.grocery_item}).$promise
+    obj =
+      quantity: $scope.groceryItem.quantity
+    GroceryItem.update({grocery_id: $scope.groceryId,id: $scope.groceryItem.id, grocery_item: obj}).$promise
       .then (data) ->
         updateCollection()
         $rootScope.growl.success(MESSAGES.UPDATE_SUCCESS)
-        $scope.toggle = false
+        $scope.category.modal = false
       .finally ->
         $scope.disableAction = false
 
   updateCollection = ->
-    for obj in $scope.collection
-      if obj.id == $scope.grocery_item.id
-        obj = $scope.grocery_item
-        break
+    total = 0
+    for obj in $scope.category.grocery_items
+      obj.quantity  = $scope.groceryItem.quantity if obj.id == $scope.groceryItem.id
+      total += obj.quantity*obj.price
+    $scope.category.total_price = total
 
 ]
