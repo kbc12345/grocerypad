@@ -13,14 +13,13 @@ angular.module('client').run [
       # thus clearing the rootScope.currentUser
       authToken = localStorage.getItem('AuthToken')
       userId = localStorage.getItem('UserId')
-      # disables polling on state change
-      $rootScope.polling = false
+
       if $rootScope.authenticatorFlag
         event.preventDefault()
         $rootScope.authenticatorFlag = false
         $http.defaults.headers.common.AuthToken = authToken
         $http.defaults.headers.common.UserId = userId
-        
+
         if !!authToken
           Session.getCurrentUser().$promise
             .then (data) ->

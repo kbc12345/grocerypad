@@ -9,6 +9,6 @@ angular.module('client').config [
         controller: 'AdminCtrl',
         templateUrl: 'modules/admin/index.html'
         data:
-          unauthenticated: true
+          authenticated: true
 
 ]
