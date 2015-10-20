@@ -13,7 +13,14 @@ class Api::GroceriesController < ApiController
 
   def index
     @grocery = Grocery.where(month: params[:month], year: params[:year], half: params[:half]).first
-    render json: Builder::Groceries.new(@grocery).build
+    if @grocery.present?
+      build_index
+    elsif Grocery.should_return_latest({month: params[:month], year: params[:year], half: params[:half]})
+      @grocery = Grocery.latest_grocery
+      build_index
+    else
+      render json: {message: 'no data available'}
+    end
   end
 
   def destroy
@@ -31,6 +38,12 @@ class Api::GroceriesController < ApiController
 
   def find_obj
     @obj = Grocery.find(params[:id])
+  end
+
+  private
+
+  def build_index
+    render json: Builder::Groceries.new(@grocery).build
   end
 
 end

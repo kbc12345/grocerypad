@@ -22,4 +22,17 @@ class Grocery < ActiveRecord::Base
     where("grocery_items.grocery_id = ?", self.id)
   end
 
+  def self.should_return_latest details
+    flag = false
+    last_grocery = Grocery.latest_grocery
+    if details[:year].to_i >= last_grocery.year.to_i && details[:month].to_i >= last_grocery.month.to_i
+        flag = true
+    end
+    flag
+  end
+
+  def self.latest_grocery
+    Grocery.order(year: "desc", month: "desc", half: "desc").first
+  end
+
 end
