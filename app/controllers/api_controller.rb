@@ -24,7 +24,7 @@ class ApiController < ApplicationController
 
 
   def current_user
-    @current_user ||= User.first if auth_token
+    @current_user ||= User.find_by(auth_token: auth_token) if auth_token
   end
 
   def current_user_id
