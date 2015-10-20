@@ -1,6 +1,5 @@
 Ctrl = ($scope,$rootScope,Grocery,GroceryItem,Product)->
 
-  NProgress.done()
 
   $scope.uiState =
     modal: false
@@ -23,9 +22,11 @@ Ctrl = ($scope,$rootScope,Grocery,GroceryItem,Product)->
     $scope.getCollection()
 
   $scope.getCollection = ->
-    Grocery.getList(query: $scope.query).$promise
+    Grocery.getList(month: $scope.query.month, year: $scope.query.year, half: $scope.query.divisions).$promise
       .then (data) ->
         $scope.grocery = data
+      .finally ->
+        NProgress.done()
 
   $scope.toggleModal =(obj,item) ->
     $scope.temp.grocery_item = angular.copy item
@@ -39,6 +40,8 @@ Ctrl = ($scope,$rootScope,Grocery,GroceryItem,Product)->
           $scope.grocery.items[index].grocery_items.splice($scope.grocery.items[index].grocery_items.indexOf(obj),1)
           $scope.grocery.items[index].total_price -= obj.quantity*obj.price
 
+  $scope.search = ->
+    NProgress.start()
   init()
 
 

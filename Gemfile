@@ -21,6 +21,8 @@ gem 'google-api-client', '0.8.2', require: 'google/api_client'
 gem 'httparty'
 gem 'devise'
 
+gem 'rails_12factor', group: :production
+
 group :development, :test do
   gem 'api_matchers'
   gem 'pry-rails'
