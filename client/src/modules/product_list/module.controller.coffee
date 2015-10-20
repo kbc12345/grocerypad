@@ -3,7 +3,11 @@ angular.module('ProductList').controller 'ProductListCtrl',
 ($scope,$rootScope,Product) ->
 
   $scope.toggleModal =(product) ->
-    $scope.product = product
+    if !!product
+      $scope.product = product
+    else
+      $scope.product = new Product({status: PRODUCT_STATUS[0].value, product_category_id: $scope.categories[0].id})
+
     $scope.uiState.productModal = !$scope.uiState.productModal
 
   $scope.delete =(obj) ->

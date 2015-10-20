@@ -10,3 +10,4 @@ module.directive 'productList',->
     products: "="
     uiState: "="
     product: "="
+    categories: "="
