@@ -28,7 +28,8 @@
     "ng-file-upload": "~7.0.10",
     "ng-file-upload-shim": "~7.0.10",
     "angular-ui-select": "~0.12.1",
-    "satellizer": "~0.12.5"
+    "satellizer": "~0.12.5",
+    "angular-growl-v2": "~0.7.5"
   },
   "resolutions": {
     "angular": "1.4.4"
