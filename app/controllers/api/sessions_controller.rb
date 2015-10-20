@@ -7,8 +7,12 @@ class Api::SessionsController < ApiController
     google_user = Oauth::GoogleAuthenticator.new(params).fetch_user
     user = User.find_or_initialize_by(email: google_user[:emails].first["value"])
 
-    user.update(access_token: google_user[:access_token])
-    binding.pry
+    user.update(
+      access_token: google_user[:access_token],
+      first_name:   google_user[:displayName],
+      email:        google_user[:emails].first["value"]
+    )
+
     render json: {token: user.auth_token, user: user}
   end
 
