@@ -24,14 +24,15 @@ class ApiController < ApplicationController
 
 
   def current_user
-    # @current_user ||= User.find_by(access_token: access_token) if access_token
-    # temp fix
-    # NOTE: change this once mark is finished with oauth
-    @current_user ||= User.first
+    @current_user ||= User.find_by(auth_token: auth_token) if auth_token
   end
 
-  def access_token
-    @access_token ||=  request.headers['Authorization']
+  def current_user_id
+    @user_id ||= request.header['UserId']
+  end
+
+  def auth_token
+    @access_token ||=  request.headers['AuthToken']
   end
 
 

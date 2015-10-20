@@ -18,9 +18,9 @@ angular.module('client').run [
       if $rootScope.authenticatorFlag
         event.preventDefault()
         $rootScope.authenticatorFlag = false
-        $http.defaults.headers.common.Authorization = authToken
+        $http.defaults.headers.common.AuthToken = authToken
         $http.defaults.headers.common.UserId = userId
-
+        
         if !!authToken
           Session.getCurrentUser().$promise
             .then (data) ->

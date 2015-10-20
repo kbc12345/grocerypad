@@ -12,4 +12,8 @@ class Api::SessionsController < ApiController
     render json: {token: user.auth_token, user: user}
   end
 
+  def show
+    render json: {token: current_user.auth_token, user: current_user}
+  end
+
 end
