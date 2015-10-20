@@ -45,6 +45,3 @@ config/application.yml
 /vendor/assets/bower_components
 /client/bower_components
 *.bowerrc
-
-# Ignore application configuration
-/config/application.yml

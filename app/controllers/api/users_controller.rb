@@ -10,7 +10,8 @@ class Api::UsersController < ApiController
     user.update(
       access_token: google_user[:access_token],
       first_name:   google_user[:displayName],
-      email:        google_user[:emails].first["value"]
+      email:        google_user[:emails].first["value"],
+      access_token: google_user[:access_token]
     )
 
     render json: {token: user.access_token, user: user}

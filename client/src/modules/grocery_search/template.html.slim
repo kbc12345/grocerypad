@@ -15,4 +15,4 @@
       .col-md-2
         select.form-control ng-model="query.divisions" ng-options="opt as opt.value for opt in divisions"
       .col-md-1
-        a.icon-search href="#"
+        a.icon-search ng-click="getCollection()"
