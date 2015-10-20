@@ -16,7 +16,6 @@ class Oauth::GoogleAuthenticator
 
   def fetch_user
     response  = HTTParty.get("#{Figaro.env.google_user_info_uri}#{@access_token}")
-
     body = response.symbolize_keys!
     body.merge(access_token: @access_token)
   end
@@ -26,7 +25,10 @@ class Oauth::GoogleAuthenticator
 
 
   def client
-    Google::APIClient.new
+    Google::APIClient.new(
+     application_name: "grocerypad",
+     application_version: "1.0"
+   )
   end
 
   def headers

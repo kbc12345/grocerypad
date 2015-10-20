@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   include Authenticable
 
   validates :email, presence: true,  uniqueness: true
-  validate :validate_password_presence
-  validate :validate_password_length
+  #validate :validate_password_presence
+  #validate :validate_password_length
 
   before_save :ensure_authentication_token
 

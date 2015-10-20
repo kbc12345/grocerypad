@@ -13,11 +13,11 @@ angular.module('Logs').controller 'LogCtrl',
     $rootScope.logUi.modal = !$rootScope.logUi.modal
     $rootScope.$broadcast('log-modal-behavior', { close: $rootScope.logUi.modal})
     $rootScope.logUi.action = true
-    $rootScope.logUi.label = label
     $rootScope.parentType = parentType
+    $rootScope.label = label
     $rootScope.parentId = parentId
     $rootScope.logs = []
-    toggleBodyScroll()
+    # toggleBodyScroll()
     $scope.getLogs() if $rootScope.logUi.modal
 
   $scope.details = (obj) ->
@@ -35,12 +35,11 @@ angular.module('Logs').controller 'LogCtrl',
     processLogs()
 
   processLogs = ->
-    $http.get("/api/logs/#{$rootScope.parentType}/#{$rootScope.parentId}?page=#{$rootScope.logPage}")
+    $http.get("/api/logs?parent_type=#{$rootScope.parentType}&parent_id=#{$rootScope.parentId}")
       .then (data) ->
         $rootScope.logs = $rootScope.logs.concat data.data
         $.growl.error {message: MESSAGES.NO_DATA} if data.data.length == 0
         $rootScope.logUi.action = true
-
 
 
 ]

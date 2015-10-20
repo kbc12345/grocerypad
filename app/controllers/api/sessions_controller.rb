@@ -8,7 +8,7 @@ class Api::SessionsController < ApiController
     user = User.find_or_initialize_by(email: google_user[:emails].first["value"])
 
     user.update(access_token: google_user[:access_token])
-
+    binding.pry
     render json: {token: user.auth_token, user: user}
   end
 

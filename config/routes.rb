@@ -7,9 +7,7 @@ Rails.application.routes.draw do
     resources :product_categories
     resources :grocery_items
     resources :groceries
-
-  
-    resources :logs
+    resources :logs, only: :index
   end
 
   get "*path" => "application#index"
