@@ -3,23 +3,34 @@ class Grocery < ActiveRecord::Base
   has_many :grocery_items
 
   INDEX_DETAILS = "
-    grocery_items.id,
-    products.name as product_name,
-    grocery_items.quantity,
-    products.price,
-    (grocery_items.quantity*products.price) as total,
-    products.status as product_status,
-    products.id as product_id,
+    items.grocery_item_id as id,
+    items.name as product_name,
+    items.quantity,
+    items.price,
+    (items.quantity*items.price) as total,
+    items.status as product_status,
+    items.product_id as product_id,
     product_categories.name as product_category_name,
     product_categories.id as product_category_id
   "
 
+  ITEM_DETAILS = "
+    grocery_items.id as grocery_item_id,
+    products.name,
+    grocery_items.quantity,
+    products.price,
+    products.status,
+    grocery_items.product_id,
+    grocery_items.grocery_id,
+    products.product_category_id
+  "
+
   def grocery_items_full_details
+    # x = sanitize_sql_array(["(select * 
+    # from products INNER JOIN grocery_items on grocery_items.product_id = products.id where grocery_items.grocery_id = ?) as items", self.id])
+
     GroceryItem.select(INDEX_DETAILS).
-    from("products, grocery_items, product_categories").
-    where("products.id = grocery_items.product_id").
-    where("products.product_category_id = product_categories.id").
-    where("grocery_items.grocery_id = ?", self.id)
+    from("product_categories LEFT JOIN (select "+Grocery::ITEM_DETAILS+" from products INNER JOIN grocery_items on grocery_items.product_id = products.id where grocery_items.grocery_id = "+self.id.to_s+") as items on items.product_category_id = product_categories.id")
   end
 
   def self.is_latest? details

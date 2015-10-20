@@ -36,8 +36,10 @@ module Builder
 
     def item_details list
       result = {grocery_items: []}
-      list.each do |obj|
-        result[:grocery_items].push grocery_item_details(obj)
+      if list[0].product_id.present?
+        list.each do |obj|
+          result[:grocery_items].push grocery_item_details(obj)
+        end
       end
       result
     end
@@ -55,11 +57,15 @@ module Builder
     end
 
     def total_price list
-      total = 0.0
-      list.each do |l|
-        total = total + (l.price.to_f*l.quantity)
+      total_price = {total_price: 0}
+      if list[0].product_id.present?
+        total = 0.0
+        list.each do |l|
+          total = total + (l.price.to_f*l.quantity)
+        end
+        total_price = {total_price: total}
       end
-       return {total_price: total}
+      total_price
     end
 
   end
