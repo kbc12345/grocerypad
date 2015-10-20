@@ -35,7 +35,7 @@ Ctrl = ($scope,$rootScope,Grocery,GroceryItem,Product)->
     swal DELETE_WARNING, ->
       GroceryItem.remove({id: obj.id,grocery_id: $scope.grocery.id}).$promise
         .then (data) ->
-          $rootScope.growl.error(MESSAGES.DELETE_SUCCESS)
+          $rootScope.growl.success(MESSAGES.DELETE_SUCCESS)
           $scope.grocery.items[index].grocery_items.splice($scope.grocery.items[index].grocery_items.indexOf(obj),1)
           $scope.grocery.items[index].total_price -= obj.quantity*obj.price
 

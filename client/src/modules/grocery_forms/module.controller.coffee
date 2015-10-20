@@ -3,6 +3,7 @@ angular.module('GroceryForms').controller 'ItemModalCtrl',
 ($scope,$rootScope,GroceryItem) ->
 
   $scope.disableAction = false
+  $scope.form = null
   $scope.temp =
     product: id: null
 
@@ -12,9 +13,14 @@ angular.module('GroceryForms').controller 'ItemModalCtrl',
 
   $scope.temp.product.price = $scope.groceryItem.price if !!$scope.groceryItem
 
-  $scope.submit =(form)->
-    form.$submitted = true
-    if form.$valid
+  $scope.toggleModal = ->
+    $scope.form.$submitted = false
+    $scope.category.modal = false
+    $scope.temp.product = null
+
+  $scope.submit = ->
+    $scope.form.$submitted = true
+    if $scope.form.$valid && (!!$scope.temp.product || !!$scope.groceryItem.id)
       $scope.disableAction = true
       evalAction()
     else
@@ -41,7 +47,7 @@ angular.module('GroceryForms').controller 'ItemModalCtrl',
         $scope.category.grocery_items.unshift obj
         $scope.category.total_price += obj.price*obj.quantity
         $rootScope.growl.success(MESSAGES.CREATE_SUCCESS)
-        $scope.category.modal = false
+        $scope.toggleModal()
       .finally ->
         $scope.disableAction = false
 
@@ -52,7 +58,7 @@ angular.module('GroceryForms').controller 'ItemModalCtrl',
       .then (data) ->
         updateCollection()
         $rootScope.growl.success(MESSAGES.UPDATE_SUCCESS)
-        $scope.category.modal = false
+        $scope.toggleModal()
       .finally ->
         $scope.disableAction = false
 
