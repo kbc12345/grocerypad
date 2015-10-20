@@ -36,6 +36,7 @@ config/sms.yml
 config/paypal.yml
 config/skylight.yml
 config/redis.yml
+config/application.yml
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
