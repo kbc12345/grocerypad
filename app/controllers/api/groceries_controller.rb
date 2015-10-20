@@ -12,7 +12,6 @@ class Api::GroceriesController < ApiController
   end
 
   def index
-    binding.pry
     @grocery = Grocery.where(month: params[:month], year: params[:year], half: params[:half]).first
     if @grocery.present?
       build_index
