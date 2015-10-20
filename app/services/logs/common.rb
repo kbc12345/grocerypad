@@ -1,4 +1,4 @@
-module Logger
+module Logs
   module Common
 
   # common methods used by the loggers
@@ -31,7 +31,7 @@ module Logger
   # note: this may differ per class
   #
   def generate_create_content
-    "#{current_user.full_name} added this entry"
+    "#{@current_user.full_name} added this entry"
   end
 
   #
@@ -40,7 +40,7 @@ module Logger
   # note: as different logs have different value of columns per label
   #
   def generate_update_content key,value
-    "#{current_user.full_name} updated #{generate_update_text(key,value)}"
+    "#{@current_user.full_name} updated #{generate_update_text(key,value)}"
   end
 
   #

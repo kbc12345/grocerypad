@@ -1,6 +1,6 @@
-module Logger
+module Logs
   class Base
-    include Logger::Common
+    include Logs::Common
 
     #
     # note: do not instantiate this class
@@ -35,9 +35,9 @@ module Logger
     #
     def publish_update_log
       logs = []
-      @obj.changes.each do |key,value|
+      @obj.previous_changes.each do |key,value|
         next if COMMON_SKIPPED_KEYS.include?(key) || is_key_skipped?(key)
-        logs.push updated_entry_log(key,value)
+        logs.push initialize_update_obj(key,value)
       end
       Log.import logs
       true
@@ -51,7 +51,7 @@ module Logger
       Log.create(parent_id: parent_id,
       content: generate_delete_content,
       parent_type: parent_type,
-      creator_id: @creator_id)
+      user_id: @creator_id)
     end
 
 
@@ -75,7 +75,7 @@ module Logger
       Log.new(parent_id: parent_id,
       content: generate_update_content(key,value),
       parent_type: parent_type,
-      creator_id: current_user.id)
+      user_id: @current_user.id)
     end
 
   end

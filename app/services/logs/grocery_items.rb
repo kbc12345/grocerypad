@@ -1,4 +1,4 @@
-module Logger
+module Logs
   class GroceryItems < Base
 
   end

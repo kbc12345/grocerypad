@@ -9,7 +9,7 @@ module.directive 'logBtn', ->
   scope:
     parentType: "@"
     parentId: "="
-    label: "@"
+    label: "="
     displayType: "@"
   link: ($scope, element) ->
     $scope.displayType = 'button' unless !!$scope.displayType

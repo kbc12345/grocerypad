@@ -3,16 +3,9 @@
     .modal-dialog
       .modal-header
         a.btn-close ng-click="toggleLogModal()" ×
-        h4 ng-bind="getLabel()"
+        h4 Logs for {{label}}
 
       .modal-body
         ul.log-list
           li ng-repeat="obj in logs"
             span ng-bind="details(obj)"
-        br
-        .text-center
-          a.btn.btn-primary(
-          ng-if="logs.length > 19"
-          ng-click="loadMore()"
-          ng-class="{'disabled': !logUi.action}" 
-          ) Load More

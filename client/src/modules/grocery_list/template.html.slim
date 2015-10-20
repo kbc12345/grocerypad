@@ -28,7 +28,7 @@
             span ng-bind="(item.price*item.quantity).formatMoney()"
           td
             .action-group
-              a.icon-logs href="#"
+              a log-btn="" parent-type="GroceryItem" parent-id="item.id" label="item.product_name"
               a.icon-edit ng-click="toggleModal(obj,item)"
               a.icon-delete ng-click="delete(item,$parent.$index)"
         tr.no-hover
