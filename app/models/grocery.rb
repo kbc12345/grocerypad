@@ -1,4 +1,5 @@
 class Grocery < ActiveRecord::Base
+
   has_many :grocery_items
 
   INDEX_DETAILS = "

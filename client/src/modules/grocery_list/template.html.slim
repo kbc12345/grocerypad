@@ -1,10 +1,10 @@
-.panel ng-repeat="obj in collection"
+.panel ng-repeat="obj in grocery.items"
   .panel-heading
     .action-group.left
       a.icon-down ng-click="obj.hide = !obj.hide"
-    span ng-bind="obj.product_category"
+    span ng-bind="obj.product_category_name"
     .action-group
-      a.icon-plus href="#"
+      a.icon-plus ng-click="toggleModal(obj,null)"
 
   .panel-body.condensed ng-if="!obj.hide"
     table.table.table-hover
@@ -15,7 +15,7 @@
           th Quantity
           th Price
           th Total
-          th
+          th.sm
       tbody
         tr ng-repeat="item in obj.grocery_items"
           td.xl ng-bind="item.product_name"
@@ -29,11 +29,18 @@
           td
             .action-group
               a.icon-logs href="#"
-              a.icon-edit href="#"
-              a.icon-delete href="#"
+              a.icon-edit ng-click="toggleModal(obj,item)"
+              a.icon-delete ng-click="delete(item,$parent.$index)"
         tr.no-hover
           td colspan="3"
           td Total:
           td
             strong ng-bind="obj.total_price.formatMoney()"
           td
+
+  item-modal(
+  category="obj"
+  products="products"
+  grocery-item="temp.grocery_item"
+  grocery-id="grocery.id"
+  )

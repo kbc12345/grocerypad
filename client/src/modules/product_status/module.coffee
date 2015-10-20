@@ -21,5 +21,6 @@ module.directive 'productStatus', ->
     else
       $scope.statusCollection = PRODUCT_STATUS
 
+
     $scope.updateStatus =(selectedObj)->
       $scope.status = $scope.obj.status

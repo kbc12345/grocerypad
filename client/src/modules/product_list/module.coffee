@@ -9,3 +9,5 @@ module.directive 'productList',->
   scope:
     products: "="
     uiState: "="
+    product: "="
+    categories: "="

@@ -11,6 +11,8 @@ angular.module('client').factory 'Product',
           method: 'GET'
       }
 
+    Product::lookUpTitle = ->
+      "#{this.name} | Price: #{this.price} | Stock levle: #{this.status} "
 
 
     Product
