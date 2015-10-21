@@ -1,34 +1,12 @@
 .login-container
   .row
-    .col-md-6.col-md-0ffset-6
-    .col-md-6.col-md-offset-6
-      .panel
-        .panel-heading Login
-        .panel-body
-          form name="loginForm"
-
-            .form-group
-              / input.form-control(
-              /   type="text"
-              /   name="username"
-              /   ng-model="credentials.email"
-              /   required=""
-              /   ng-enter="login(loginForm)"
-              /   placeholder="Username"
-              / )
-
-
-            .form-group
-              / input.form-control(
-              /   type="password"
-              /   name="password"
-              /   ng-model="credentials.password"
-              /   required=""
-              /   ng-enter="login(loginForm)"
-              /   placeholder="Password"
-              / )
-
-          .panel-footer
-            a.btn.btn-primary.btn-block ng-click="authenticate('google')"  href="#" Login
-
+    .col-md-12
+      .logo
+    .col-md-12.text-center
+      a.google-btn.btn-block ng-click="authenticate('google')"  href="#"
+        | Login with Google Account
+        '
+        i.icon-center.icon-right-circled
+    .col-md-12.text-center
+      div.credits Sourcepad. SourcepadLabs.
   div growl=""
