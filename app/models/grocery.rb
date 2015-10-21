@@ -1,6 +1,7 @@
 class Grocery < ActiveRecord::Base
 
   has_many :grocery_items
+  validates :month, uniqueness: {scope: [:year, :half]}
 
   INDEX_DETAILS = "
     items.grocery_item_id as id,
@@ -26,24 +27,31 @@ class Grocery < ActiveRecord::Base
   "
 
   def grocery_items_full_details
-    # x = sanitize_sql_array(["(select * 
-    # from products INNER JOIN grocery_items on grocery_items.product_id = products.id where grocery_items.grocery_id = ?) as items", self.id])
+    # x = sanitize_sql_array(["(select * from products INNER JOIN grocery_items on grocery_items.product_id = products.id where grocery_items.grocery_id = ?)", self.id])
+
+    # GroceryItem.select(INDEX_DETAILS).
+    # from("product_categories").
+    # joins("left join "+x+" as items on items.product_category_id = product_categories.id")
 
     GroceryItem.select(INDEX_DETAILS).
     from("product_categories LEFT JOIN (select "+Grocery::ITEM_DETAILS+" from products INNER JOIN grocery_items on grocery_items.product_id = products.id where grocery_items.grocery_id = "+self.id.to_s+") as items on items.product_category_id = product_categories.id")
   end
 
-  def self.is_latest? details
-    flag = false
-    last_grocery = Grocery.latest_grocery
-    if details[:year].to_i >= last_grocery.year.to_i && details[:month].to_i >= last_grocery.month.to_i
-        flag = true
+  def self.first_or_copy_latest
+    @grocery = Grocery.create(month: Date.today.month.to_i, year: Date.today.year.to_i, half: Date.today.day.to_i/15.0 <= 1 ? (1) : (2), status: "pending")
+    if Grocery.count > 1
+      columns = [:product_id, :quantity, :grocery_id]
+      list = []
+      Grocery.latest_grocery(1).grocery_items.each do |t|
+        list.push [t.product_id, t.quantity, @grocery.id]
+      end
+      GroceryItem.import(columns, list)
     end
-    flag
+    @grocery  
   end
 
-  def self.latest_grocery
-    order(year: "desc", month: "desc", half: "desc").first
+  def self.latest_grocery(offset)
+      offset(offset).order(year: "desc", month: "desc", half: "desc").first
   end
 
 end
